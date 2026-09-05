@@ -1,0 +1,19 @@
+bg01_forest.webp: photorealistic misty ancient forest trail, cinematic low angle, realistic foliage, moody morning light, clear central path, no people, no text, 16:9
+
+bg02_fortress.webp: photorealistic medieval stone fortress approach, realistic weathered masonry, cloudy cinematic light, clear central route, no people, no text, 16:9
+
+bg03_battlefield.webp: photorealistic abandoned battlefield with damaged armor and scorched earth, cinematic smoke, no visible bodies, clear central route, no text, 16:9
+
+bg04_elemental.webp: photorealistic elemental landscape blending volcanic rock, frost, storm clouds and distant lightning, cinematic, clear central route, no text, 16:9
+
+bg05_futurecity.webp: photorealistic futuristic megacity industrial avenue, believable architecture, wet pavement, cinematic evening lighting, clear central route, no text, 16:9
+
+bg06_planetary.webp: photorealistic alien planetary surface with enormous planet in sky, believable geology, cinematic light, clear central route, no text, 16:9
+
+bg07_space.webp: photorealistic lunar or asteroid surface overlooking star field and distant planets, cinematic, clear central route, no text, 16:9
+
+bg08_nebula.webp: photorealistic deep-space nebula environment with rocky platform foreground, realistic astrophotography-inspired lighting, clear central route, no text, 16:9
+
+bg09_reality.webp: photorealistic fractured reality landscape, physically believable floating stone and glass-like spatial distortions, cinematic, clear central route, no text, 16:9
+
+bg10_absolute.webp: photorealistic transcendent cosmic environment, luminous galaxies and dark matter structures surrounding a stable foreground path, cinematic, no text, 16:9

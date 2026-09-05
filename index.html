@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#06080c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Weapon Evolution: The Absolute</title>
+<style>
+:root{--st:env(safe-area-inset-top,0px);--sr:env(safe-area-inset-right,0px);--sb:env(safe-area-inset-bottom,0px);--sl:env(safe-area-inset-left,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030406;color:#fff;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;overscroll-behavior:none;user-select:none;-webkit-user-select:none}
+#app{position:fixed;inset:0;overflow:hidden;background:#040509}
+#bgA,#bgB{position:absolute;inset:-4%;background-position:center;background-size:cover;transform:scale(1.08);filter:saturate(.92) contrast(1.06) brightness(.62);transition:opacity .8s ease,filter .6s ease;will-change:transform,opacity}
+#bgB{opacity:0}
+#vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 22%,rgba(0,0,0,.24) 64%,rgba(0,0,0,.74) 100%),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28));pointer-events:none}
+#road{position:absolute;left:50%;bottom:-8vh;width:min(118vw,1200px);height:65vh;transform:translateX(-50%) perspective(600px) rotateX(66deg);transform-origin:50% 100%;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(50,55,63,.18) 48%,rgba(0,0,0,.78)),repeating-linear-gradient(90deg,transparent 0 32.7%,rgba(255,255,255,.08) 33% 33.25%,transparent 33.5% 66.2%,rgba(255,255,255,.08) 66.5% 66.75%,transparent 67%);filter:blur(.2px);opacity:.88}
+#weapon{position:absolute;left:50%;bottom:9vh;width:min(34vw,340px);height:min(54vh,520px);transform:translate3d(-50%,0,0) rotate(-8deg);transform-origin:52% 88%;will-change:transform,filter;pointer-events:none;z-index:5;display:grid;place-items:center}
+#weapon img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 24px 18px rgba(0,0,0,.62)) drop-shadow(0 0 18px rgba(130,220,255,.18));pointer-events:none}
+#fallbackWeapon{width:55px;height:330px;border-radius:45% 45% 22% 22%;background:linear-gradient(90deg,#3d444d,#d5d9dc 45%,#767d84 65%,#2e3338);box-shadow:inset 0 0 14px rgba(255,255,255,.28),0 20px 28px rgba(0,0,0,.7);position:relative}
+#fallbackWeapon:after{content:"";position:absolute;width:120px;height:18px;background:linear-gradient(#3c3025,#8b7158);bottom:36px;left:50%;transform:translateX(-50%);border-radius:5px;box-shadow:0 5px 10px rgba(0,0,0,.5)}
+#targets{position:absolute;inset:0;z-index:3;pointer-events:none}
+.target{position:absolute;width:74px;height:74px;border-radius:18px;background:linear-gradient(145deg,rgba(235,241,245,.92),rgba(68,76,84,.95));border:1px solid rgba(255,255,255,.28);box-shadow:0 14px 28px rgba(0,0,0,.45),inset 0 0 12px rgba(255,255,255,.16);display:grid;place-items:center;font-weight:900;color:#0d1115;font-size:11px;letter-spacing:.08em;will-change:transform,opacity;overflow:hidden}
+.target.core{background:radial-gradient(circle,#ddfff1,#66ffd0 24%,#12675a 72%,#082f29);color:white;box-shadow:0 0 34px rgba(88,255,210,.62),0 18px 28px rgba(0,0,0,.5)}
+.target.hazard{background:radial-gradient(circle,#ffb0b0,#e23c4d 34%,#5a111c 76%);color:white;box-shadow:0 0 30px rgba(255,55,80,.42),0 18px 28px rgba(0,0,0,.5)}
+.shard{position:absolute;width:14px;height:7px;background:linear-gradient(90deg,#d7dce2,#5b6168);z-index:8;pointer-events:none;will-change:transform,opacity}
+.spark{position:absolute;width:4px;height:4px;border-radius:50%;background:white;box-shadow:0 0 8px #ffd66b,0 0 14px #ff8a35;z-index:9;pointer-events:none;will-change:transform,opacity}
+#flash{position:absolute;inset:0;background:white;opacity:0;pointer-events:none;z-index:20}
+#hud{position:absolute;z-index:30;left:calc(12px + var(--sl));right:calc(12px + var(--sr));top:calc(10px + var(--st));display:flex;gap:10px;align-items:flex-start;pointer-events:none}
+.panel{background:linear-gradient(180deg,rgba(8,11,16,.82),rgba(5,7,11,.62));border:1px solid rgba(255,255,255,.12);border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.34);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#stats{padding:10px 12px;flex:1;max-width:620px}
+#name{font-size:clamp(15px,2.2vw,20px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#row{display:flex;gap:14px;font-size:12px;color:#aeb7c7;margin-top:4px}#row b{color:white}
+.bar{height:9px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:8px;border:1px solid rgba(255,255,255,.06)}
+#xp{height:100%;width:0;background:linear-gradient(90deg,#61ddff,#78ffa9);box-shadow:0 0 15px rgba(80,230,255,.5)}
+#buttons{margin-left:auto;display:flex;gap:7px;pointer-events:auto}
+.icon{width:44px;height:44px;border:1px solid rgba(255,255,255,.12);border-radius:13px;background:rgba(8,11,16,.72);color:white;font-size:18px;backdrop-filter:blur(10px)}
+#message{position:absolute;z-index:35;left:50%;top:47%;transform:translate(-50%,-50%);text-align:center;width:min(780px,calc(100vw - 30px));opacity:0;transition:opacity .16s;pointer-events:none;text-shadow:0 5px 25px #000}
+#message.show{opacity:1}.big{font-size:clamp(38px,8vw,78px);font-weight:1000;letter-spacing:.035em;line-height:.94}.small{font-size:clamp(14px,3vw,21px);font-weight:800;color:#e6eef8;margin-top:9px}
+.screen{position:absolute;inset:0;z-index:50;display:grid;place-items:center;padding:calc(18px + var(--st)) calc(18px + var(--sr)) calc(18px + var(--sb)) calc(18px + var(--sl));background:radial-gradient(circle at 50% 24%,rgba(71,118,193,.18),transparent 42%),rgba(2,3,5,.75);backdrop-filter:blur(7px)}
+.card{width:min(580px,100%);padding:24px;border:1px solid rgba(255,255,255,.12);border-radius:25px;background:rgba(6,8,12,.84);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+h1{font-size:clamp(38px,8vw,66px);line-height:.9;letter-spacing:-.045em;margin:0}.sub{font-size:14px;line-height:1.55;color:#aeb8c8;margin-top:14px}.note{font-size:12px;color:#8390a3;margin-top:13px;line-height:1.45}
+.primary,.secondary{width:100%;min-height:52px;border-radius:15px;font-weight:900;font-size:16px;margin-top:18px}.primary{border:0;background:linear-gradient(135deg,#9fffe0,#68dfff);color:#061017}.secondary{margin-top:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:white}
+#pause,#over{display:none}
+#assetWarn{position:absolute;z-index:40;left:50%;bottom:calc(12px + var(--sb));transform:translateX(-50%);padding:7px 11px;border-radius:999px;background:rgba(7,9,13,.66);border:1px solid rgba(255,255,255,.1);font-size:11px;color:#b9c3d2;pointer-events:none;max-width:88vw;text-align:center}
+@media(max-width:620px){#hud{right:calc(7px + var(--sr));left:calc(7px + var(--sl));top:calc(7px + var(--st))}#stats{padding:8px 9px}#buttons{position:absolute;right:0;top:73px;flex-direction:column}#weapon{width:min(43vw,300px);height:min(49vh,460px)}#assetWarn{max-width:68vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(orientation:landscape) and (max-height:540px){#weapon{height:63vh;width:25vw;bottom:3vh}#buttons{position:static;flex-direction:row}#assetWarn{display:none}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bgA"></div><div id="bgB"></div><div id="road"></div><div id="targets"></div><div id="weapon"><img id="weaponImg" alt=""><div id="fallbackWeapon"></div></div><div id="vignette"></div><div id="flash"></div>
+  <div id="hud"><div id="stats" class="panel"><div id="name">L1 • Stick</div><div id="row"><span>POWER <b id="power">1</b></span><span>LEVEL <b id="level">1 / 50</b></span><span>COMBO <b id="combo">x1</b></span></div><div class="bar"><div id="xp"></div></div></div><div id="buttons"><button id="pauseBtn" class="icon">Ⅱ</button><button id="soundBtn" class="icon">🔊</button><button id="fullBtn" class="icon">⛶</button></div></div>
+  <div id="message"><div class="big"></div><div class="small"></div></div>
+  <div id="assetWarn">Drop your photorealistic WebP assets into /assets to replace the built-in fallback visuals.</div>
+
+  <div id="menu" class="screen"><div class="card"><h1>WEAPON<br>EVOLUTION</h1><div class="sub">A cinematic 2.5D build: photorealistic transparent weapon sprites, layered environments, impact debris, sparks, camera shake and a lightweight input engine designed for iPad Safari.</div><div class="note">The game runs now with fallbacks. Add w01.webp through w50.webp and ten background files for the full photorealistic version.</div><button id="startBtn" class="primary">START / CONTINUE</button><button id="resetBtn" class="secondary">RESET SAVE</button></div></div>
+  <div id="pause" class="screen"><div class="card"><h1 style="font-size:48px">PAUSED</h1><div class="sub">The simulation is stopped cleanly.</div><button id="resumeBtn" class="primary">RESUME</button></div></div>
+  <div id="over" class="screen"><div class="card"><h1 style="font-size:48px">RUN ENDED</h1><div class="sub" id="overText"></div><button id="retryBtn" class="primary">RETRY</button></div></div>
+</div>
+<script>
+(()=>{
+'use strict';
+const LEVELS = ["Stick", "Bone Stick", "Cardboard Sword", "Wooden Sword", "Stone Sword", "Copper Sword", "Iron Sword", "Frost Iron Sword", "Flame Iron Sword", "Iron Sword v3", "Iron Sword v4", "Iron Sword v5", "Iron Sword v6", "Iron Sword v7", "Iron Sword v8", "Iron Sword v9", "Super Iron Sword", "Ultra Iron Sword", "Platinum Sword", "Diamond Sword", "Diamond Sword v2.4", "Diamond Sword v3.1", "Diamond Sword v4", "Diamond Sword v5", "Diamond Sword v6", "Diamond Sword v7", "Diamond Sword v8", "Diamond Sword v9", "Diamond Sword Supra", "Netherite Sword", "Netherite Sword v2.6", "Netherite Sword v3.3", "Netherite Sword v4", "Netherite Sword v5", "Netherite Sword v6", "Netherite Sword v7", "Netherite Sword v8", "Netherite Sword v9", "Netherstar Sword", "Brain Sword", "Brain Sword Supra", "Sword of the Cosmos", "Sword of the Mutants", "Sword of the Titans", "Godstar Sword", "Ultra Godstar Sword", "Ultrastar Sword", "Dark Ultrastar Sword", "Darkgod Sword", "Extreme Darkgod Sword"];
+const POWERS = [1,3,7,15,30,60,120,250,500,1000,2000,4000,8000,16000,32000,64000,125000,250000,500000,1e6,2e6,4e6,8e6,16e6,32e6,64e6,125e6,250e6,500e6,1e9,2e9,4e9,8e9,16e9,32e9,64e9,125e9,250e9,500e9,1e12,2e12,4e12,8e12,16e12,32e12,64e12,125e12,250e12,500e12,Infinity];
+const BG = [
+ [1,5,'assets/backgrounds/bg01_forest.webp'],[6,10,'assets/backgrounds/bg02_fortress.webp'],[11,15,'assets/backgrounds/bg03_battlefield.webp'],
+ [16,20,'assets/backgrounds/bg04_elemental.webp'],[21,25,'assets/backgrounds/bg05_futurecity.webp'],[26,30,'assets/backgrounds/bg06_planetary.webp'],
+ [31,35,'assets/backgrounds/bg07_space.webp'],[36,40,'assets/backgrounds/bg08_nebula.webp'],[41,45,'assets/backgrounds/bg09_reality.webp'],[46,50,'assets/backgrounds/bg10_absolute.webp']
+];
+const $=s=>document.querySelector(s);
+const el={app:$('#app'),bgA:$('#bgA'),bgB:$('#bgB'),targets:$('#targets'),weapon:$('#weapon'),weaponImg:$('#weaponImg'),fallback:$('#fallbackWeapon'),flash:$('#flash'),name:$('#name'),power:$('#power'),level:$('#level'),combo:$('#combo'),xp:$('#xp'),message:$('#message'),big:$('#message .big'),small:$('#message .small'),menu:$('#menu'),pause:$('#pause'),over:$('#over'),overText:$('#overText')};
+let state='menu', levelIndex=0, xp=0, combo=1, lives=3, invuln=0, targetX=0, playerX=0, pointerId=null, pointerDown=false, spawnTimer=.3, active=[], pool=[], accumulator=0,lastT=performance.now(),soundOn=true,audio=null,shake=0,swing=0,msgTimer=0,bgFront='A',saveTimer=0;
+try{const s=JSON.parse(localStorage.getItem('weapon25dSave')||'{}');if(Number.isInteger(s.levelIndex))levelIndex=Math.max(0,Math.min(49,s.levelIndex));if(Number.isFinite(s.xp))xp=Math.max(0,Math.min(.999,s.xp));}catch(_){}
+function fmt(v){if(v===Infinity)return'∞';for(const [u,n] of [['T',1e12],['B',1e9],['M',1e6],['K',1e3]])if(v>=n){const x=v/n;return (x>=100?x.toFixed(0):x>=10?x.toFixed(1):x.toFixed(2)).replace(/\.0+$/,'')+u}return String(v)}
+function save(){try{localStorage.setItem('weapon25dSave',JSON.stringify({levelIndex,xp,t:Date.now()}))}catch(_){}}
+function weaponPath(i){return `assets/weapons/w${String(i+1).padStart(2,'0')}.webp`}
+function currentBg(level){const row=BG.find(x=>level>=x[0]&&level<=x[1]);return row?row[2]:''}
+function loadWeapon(){
+ const src=weaponPath(levelIndex);
+ el.weaponImg.style.display='none';el.fallback.style.display='block';
+ const img=new Image(); img.onload=()=>{el.weaponImg.src=src;el.weaponImg.style.display='block';el.fallback.style.display='none'}; img.onerror=()=>{}; img.src=src;
+}
+function loadBg(){
+ const src=currentBg(levelIndex+1); if(!src)return;
+ const next=bgFront==='A'?el.bgB:el.bgA,prev=bgFront==='A'?el.bgA:el.bgB;
+ const img=new Image();img.onload=()=>{next.style.backgroundImage=`url("${src}")`;next.style.opacity='1';prev.style.opacity='0';bgFront=bgFront==='A'?'B':'A'};img.onerror=()=>{};img.src=src;
+}
+function hud(){el.name.textContent=`L${levelIndex+1} • ${LEVELS[levelIndex]}`;el.power.textContent=fmt(POWERS[levelIndex]);el.level.textContent=`${levelIndex+1} / 50`;el.combo.textContent=`x${combo.toFixed(combo<2?1:0)}`;el.xp.style.width=`${Math.min(1,xp)*100}%`}
+function msg(a,b='',ms=700){clearTimeout(msgTimer);el.big.textContent=a;el.small.textContent=b;el.message.classList.add('show');msgTimer=setTimeout(()=>el.message.classList.remove('show'),ms)}
+function ensureAudio(){if(!soundOn)return;if(!audio)audio=new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume()}
+function tone(f=220,d=.06,type='triangle',vol=.025,slide=0){if(!soundOn)return;ensureAudio();if(!audio)return;const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.007);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+d+.02)}
+function start(){ensureAudio();state='run';el.menu.style.display='none';el.pause.style.display='none';el.over.style.display='none';lives=3;combo=1;invuln=.7;targetX=0;playerX=0;clearTargets();resetClock();msg('READY','Drag or swipe to steer.',620);tone(220,.09,'square',.03,90);setTimeout(()=>{if(state==='run'){msg('FIGHT!','',440);tone(420,.09,'square',.035,160)}},480)}
+function pause(v){if(v&&state==='run'){state='pause';el.pause.style.display='grid';pointerDown=false}else if(!v&&state==='pause'){state='run';el.pause.style.display='none';resetClock()}}
+function over(){if(state!=='run')return;state='over';el.overText.textContent=`You reached Level ${levelIndex+1}: ${LEVELS[levelIndex]}.`;el.over.style.display='grid';save();tone(120,.28,'sawtooth',.035,-55)}
+function makeTarget(){let d=pool.pop();if(!d){d=document.createElement('div');d.className='target';el.targets.appendChild(d)}d.style.display='grid';d.className='target';active.push(d);return d}
+function spawn(){
+ const d=makeTarget(),r=Math.random(),type=r<.17?'hazard':r<.39?'core':'target';d.classList.add(type);d.textContent=type==='hazard'?'DANGER':type==='core'?'CORE':'BREAK';
+ const x=(-.8+Math.random()*1.6),y=.26+Math.random()*.14,s=.52+Math.random()*.42;d._x=x;d._y=y;d._z=0;d._s=s;d._type=type;d._value=type==='core'?.12:.055;drawTarget(d);
+}
+function drawTarget(d){const W=innerWidth,H=innerHeight;const depth=1-d._z;const scale=d._s*(.35+d._z*1.15);const x=W*.5+d._x*W*.38*(.35+d._z*.8);const y=H*(d._y+d._z*.48);d.style.transform=`translate3d(${x-37}px,${y-37}px,0) scale(${scale}) rotate(${d._z*220}deg)`;d.style.opacity=Math.min(1,.25+d._z*1.4)}
+function release(d){const i=active.indexOf(d);if(i>=0)active.splice(i,1);d.style.display='none';pool.push(d)}
+function clearTargets(){for(let i=active.length-1;i>=0;i--)release(active[i])}
+function debris(x,y){
+ for(let i=0;i<8;i++){const s=document.createElement('div');s.className=i<5?'spark':'shard';s.style.left=x+'px';s.style.top=y+'px';el.app.appendChild(s);const a=Math.random()*Math.PI*2,dist=50+Math.random()*120,rx=Math.cos(a)*dist,ry=Math.sin(a)*dist;requestAnimationFrame(()=>{s.style.transition='transform .38s cubic-bezier(.1,.7,.2,1),opacity .38s';s.style.transform=`translate(${rx}px,${ry}px) rotate(${Math.random()*520}deg) scale(.15)`;s.style.opacity='0'});setTimeout(()=>s.remove(),430)}
+}
+function hit(d){
+ const r=d.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;debris(cx,cy);swing=Math.min(1.8,swing+1);shake=Math.min(1,shake+.22);el.flash.style.transition='none';el.flash.style.opacity='.28';requestAnimationFrame(()=>{el.flash.style.transition='opacity .1s';el.flash.style.opacity='0'});
+ if(d._type==='hazard'){if(invuln<=0){lives--;combo=1;invuln=.9;shake=.8;tone(95,.13,'sawtooth',.04,-40);msg('DANGER',`${lives} integrity left`,420);if(lives<=0)over()}release(d);return}
+ combo=Math.min(12,combo+.22);xp+=d._value*(1+(combo-1)*.045);tone(d._type==='core'?650:320,.05,'triangle',.025,d._type==='core'?150:70);release(d);evolve();
+}
+function evolve(){if(levelIndex>=49){xp=1;hud();return}if(xp>=1){xp-=1;levelIndex++;save();loadWeapon();loadBg();shake=1;msg('EVOLUTION!',`LEVEL ${levelIndex+1} • ${LEVELS[levelIndex]}`,1050);tone(240,.13,'triangle',.045,430);setTimeout(()=>tone(520,.17,'triangle',.035,420),90);if(levelIndex===49){msg('THE ABSOLUTE','All 50 weapon forms unlocked.',2100)}}}
+function update(dt){
+ if(invuln>0)invuln-=dt;
+ const follow=1-Math.exp(-dt*14);playerX+=(targetX-playerX)*follow;swing*=Math.exp(-dt*9);combo=Math.max(1,combo-dt*.025);
+ spawnTimer-=dt;if(spawnTimer<=0&&active.length<18){spawn();spawnTimer=Math.max(.25,.68-levelIndex*.006)*(0.82+Math.random()*.44)}
+ const speed=.31+Math.min(.25,levelIndex*.004);
+ for(let i=active.length-1;i>=0;i--){const d=active[i];d._z+=dt*speed;drawTarget(d);if(d._z>1.06){release(d);continue}
+  if(d._z>.73&&d._z<.96){const wx=.5+playerX*.38;const tx=.5+d._x*.38*(.35+d._z*.8);if(Math.abs(wx-tx)<.115*(.9+d._s)){hit(d)}}
+ }
+ saveTimer+=dt;if(saveTimer>8){saveTimer=0;save()}hud();
+}
+function render(dt){
+ shake*=Math.exp(-dt*10);const sx=(Math.random()-.5)*shake*8,sy=(Math.random()-.5)*shake*5;
+ el.app.style.transform=`translate3d(${sx}px,${sy}px,0)`;
+ const px=innerWidth*.5+playerX*innerWidth*.38; const tilt=-8-playerX*10-swing*28;
+ el.weapon.style.transform=`translate3d(${px-innerWidth*.5}px,0,0) translateX(-50%) rotate(${tilt}deg) scale(${1+swing*.04})`;
+ const front=bgFront==='A'?el.bgA:el.bgB;front.style.transform=`scale(1.08) translate3d(${-playerX*1.8}%,${Math.sin(performance.now()*.00035)*.4}%,0)`;
+}
+const FIX=1/60;function resetClock(){lastT=performance.now();accumulator=0}
+function loop(t){requestAnimationFrame(loop);const frame=Math.min(.05,Math.max(0,(t-lastT)/1000));lastT=t;if(state==='run'){accumulator=Math.min(.12,accumulator+frame);let n=0;while(accumulator>=FIX&&n<7){update(FIX);accumulator-=FIX;n++}}else accumulator=0;render(frame)}
+function worldX(clientX){return Math.max(-.95,Math.min(.95,(clientX/Math.max(1,innerWidth)-.5)/.38))}
+el.app.addEventListener('pointerdown',e=>{if(state!=='run')return;pointerDown=true;pointerId=e.pointerId;targetX=worldX(e.clientX);el.app.setPointerCapture?.(e.pointerId);e.preventDefault()},{passive:false});
+el.app.addEventListener('pointermove',e=>{if(!pointerDown||e.pointerId!==pointerId||state!=='run')return;targetX=worldX(e.clientX);e.preventDefault()},{passive:false});
+function pend(e){if(e.pointerId!==pointerId)return;pointerDown=false;pointerId=null;try{el.app.releasePointerCapture?.(e.pointerId)}catch(_){}}
+el.app.addEventListener('pointerup',pend);el.app.addEventListener('pointercancel',pend);el.app.addEventListener('lostpointercapture',()=>{pointerDown=false;pointerId=null});
+$('#startBtn').onclick=start;$('#retryBtn').onclick=start;$('#pauseBtn').onclick=()=>pause(true);$('#resumeBtn').onclick=()=>pause(false);
+$('#soundBtn').onclick=()=>{soundOn=!soundOn;$('#soundBtn').textContent=soundOn?'🔊':'🔇';if(soundOn)ensureAudio()};
+$('#fullBtn').onclick=async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(_){}};
+$('#resetBtn').onclick=()=>{try{localStorage.removeItem('weapon25dSave')}catch(_){}levelIndex=0;xp=0;combo=1;loadWeapon();loadBg();hud();msg('RESET','Progress returned to Level 1.',700)};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='run')pause(true);resetClock()});window.addEventListener('pagehide',save);document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});document.addEventListener('contextmenu',e=>e.preventDefault());
+loadWeapon();loadBg();hud();resetClock();requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

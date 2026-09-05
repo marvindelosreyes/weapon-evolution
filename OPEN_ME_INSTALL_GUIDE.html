@@ -1,0 +1,351 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Weapon Evolution Install Guide</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 22px;line-height:1.55;color:#1a1a1a}
+pre{white-space:pre-wrap;font:inherit;background:#f6f7f8;border:1px solid #ddd;border-radius:14px;padding:22px}
+h1{font-size:34px}
+</style></head><body>
+<h1>Weapon Evolution — Install Guide</h1>
+<pre>WEAPON EVOLUTION — COMPLETE READY-TO-DEPLOY PACKAGE
+===================================================
+
+YOU DO NOT NEED TO COPY THE SWORD IMAGES ANYMORE.
+THE 50 SWORD IMAGES ARE ALREADY INSIDE THE GAME.
+
+WHAT YOU NEED
+-------------
+1. A computer (Windows or Mac is easiest)
+2. A free GitHub account
+3. Internet
+4. Your son's iPad for testing
+
+WHAT IS INSIDE THIS ZIP
+-----------------------
+- index.html  -&gt; the game
+- assets/weapons/w01.webp to w50.webp -&gt; all 50 sword images
+- assets/backgrounds/ -&gt; background placeholders
+- weapon_mapping.json -&gt; level/image mapping
+- README_DEPLOY.txt -&gt; technical notes
+- THIS_FILE_INSTALL_FIRST.txt -&gt; this idiot-proof guide
+
+PART 1 — DOWNLOAD AND UNZIP
+===========================
+
+STEP 1
+Download the ZIP file.
+
+STEP 2
+On Windows:
+- Right-click the ZIP
+- Click "Extract All"
+- Click "Extract"
+
+On Mac:
+- Double-click the ZIP
+
+STEP 3
+Open the extracted folder.
+
+You should immediately see:
+- index.html
+- asset-manifest.json
+- assets folder
+- README_DEPLOY.txt
+
+IMPORTANT:
+Do NOT upload the ZIP itself to GitHub.
+You must upload the FILES INSIDE the extracted folder.
+
+PART 2 — CREATE A FREE GITHUB ACCOUNT
+=====================================
+
+STEP 4
+Open:
+https://github.com
+
+STEP 5
+If you do not have an account:
+- Click Sign up
+- Create a free account
+- Verify your email
+- Sign in
+
+PART 3 — CREATE THE GAME WEBSITE
+================================
+
+STEP 6
+After signing in to GitHub:
+- Click the "+" button near the top-right
+- Click "New repository"
+
+STEP 7
+For Repository name, type exactly:
+weapon-evolution
+
+STEP 8
+Choose:
+Public
+
+STEP 9
+Do NOT add a README.
+Do NOT add .gitignore.
+Do NOT add a license.
+
+STEP 10
+Click:
+Create repository
+
+PART 4 — UPLOAD THE GAME
+========================
+
+STEP 11
+Inside the empty repository, click:
+"uploading an existing file"
+
+If you do not see that:
+- Click "Add file"
+- Click "Upload files"
+
+STEP 12
+Go back to the extracted Weapon Evolution folder on your computer.
+
+STEP 13
+Select EVERYTHING INSIDE that folder:
+- index.html
+- asset-manifest.json
+- README_DEPLOY.txt
+- all text files
+- assets folder
+
+STEP 14
+Drag ALL of those items into the GitHub upload box.
+
+IMPORTANT:
+When finished uploading, GitHub should show index.html at the TOP LEVEL.
+
+CORRECT:
+weapon-evolution/
+  index.html
+  assets/
+  asset-manifest.json
+
+WRONG:
+weapon-evolution/
+  Weapon_Evolution_COMPLETE_READY_TO_DEPLOY/
+    index.html
+    assets/
+
+STEP 15
+Scroll down.
+
+STEP 16
+Click:
+Commit changes
+
+Wait until GitHub finishes saving the files.
+
+PART 5 — TURN IT INTO A WEBSITE
+===============================
+
+STEP 17
+At the top of your repository, click:
+Settings
+
+STEP 18
+On the left side, click:
+Pages
+
+STEP 19
+Under "Build and deployment":
+
+For Source choose:
+Deploy from a branch
+
+STEP 20
+Under Branch choose:
+main
+
+STEP 21
+For folder choose:
+/(root)
+
+STEP 22
+Click:
+Save
+
+PART 6 — FIND YOUR GAME LINK
+============================
+
+STEP 23
+Stay on the Pages screen.
+
+GitHub will eventually show a message that your site is published.
+
+The address will look like:
+
+https://YOUR-GITHUB-USERNAME.github.io/weapon-evolution/
+
+Example:
+If your GitHub username is marvin123,
+your game would be:
+
+https://marvin123.github.io/weapon-evolution/
+
+STEP 24
+Click that link.
+
+The Weapon Evolution game should open.
+
+PART 7 — TEST THE GAME ON YOUR COMPUTER
+=======================================
+
+STEP 25
+Click:
+START / CONTINUE
+
+STEP 26
+Move the mouse left and right.
+
+The weapon should move.
+
+STEP 27
+Check that Level 1 shows the Stick.
+
+The sword files are ALREADY installed.
+
+Level examples:
+- Level 1 = Stick
+- Level 2 = Bone Stick
+- Level 3 = Cardboard Sword
+- Level 20 = Diamond Sword
+- Level 30 = Netherite Sword
+- Level 40 = Brain Sword
+- Level 50 = Extreme Darkgod Sword
+
+PART 8 — TEST ON YOUR SON'S IPAD
+================================
+
+STEP 28
+On the iPad, open Safari.
+
+STEP 29
+Type your GitHub Pages game address.
+
+STEP 30
+Tap:
+START / CONTINUE
+
+STEP 31
+Test these one at a time:
+- drag slowly left
+- drag slowly right
+- swipe quickly left
+- swipe quickly right
+- keep your finger down and move repeatedly
+- pause
+- resume
+- rotate the iPad landscape
+- rotate it back portrait
+- close Safari
+- reopen Safari
+- continue the game
+
+PART 9 — INSTALL IT LIKE AN APP
+===============================
+
+STEP 32
+While the game is open in Safari, tap the Share icon.
+
+It looks like a square with an arrow pointing upward.
+
+STEP 33
+Scroll down and tap:
+Add to Home Screen
+
+STEP 34
+Name it:
+Weapon Evolution
+
+STEP 35
+Tap:
+Add
+
+The game will now appear as an icon on the iPad Home Screen.
+
+PART 10 — IF SOMETHING DOES NOT WORK
+====================================
+
+IF YOU GET A 404 PAGE:
+- Go back to GitHub
+- Settings
+- Pages
+- Make sure Source = Deploy from a branch
+- Branch = main
+- Folder = /(root)
+
+IF THE GAME OPENS BUT NO WEAPON APPEARS:
+Check GitHub and confirm this file exists:
+assets/weapons/w01.webp
+
+IF ONLY SOME WEAPONS ARE MISSING:
+Check that you have:
+w01.webp
+w02.webp
+w03.webp
+...
+w50.webp
+
+All filenames must be lowercase.
+
+IF THE IPAD SHOWS AN OLD VERSION:
+- Close the Home Screen game
+- Open the website directly in Safari
+- Refresh the page
+- Then reopen the Home Screen shortcut
+
+PART 11 — WHAT YOU DO NOT NEED TO DO
+====================================
+
+You do NOT need:
+- Google Apps Script
+- Google Sheets
+- a paid website
+- a database
+- a game engine installation
+- Three.js installation
+- Node.js
+- Visual Studio
+- Xcode
+- an Apple developer account
+- an App Store submission
+
+For this version:
+GitHub Pages = free hosting
+Safari = game player
+localStorage = game save
+
+PART 12 — VERY IMPORTANT
+========================
+
+DO NOT rename:
+index.html
+
+DO NOT rename:
+assets
+
+DO NOT rename:
+assets/weapons
+
+DO NOT rename:
+w01.webp through w50.webp
+
+The game code expects those exact names.
+
+DONE
+====
+
+Once the GitHub Pages address opens successfully on the iPad,
+the game is installed.
+
+</pre>
+</body></html>

@@ -1,0 +1,50 @@
+01. Stick -> w01.webp
+02. Bone Stick -> w02.webp
+03. Cardboard Sword -> w03.webp
+04. Wooden Sword -> w04.webp
+05. Stone Sword -> w05.webp
+06. Copper Sword -> w06.webp
+07. Iron Sword -> w07.webp
+08. Frost Iron Sword -> w08.webp
+09. Flame Iron Sword -> w09.webp
+10. Iron Sword v3 -> w10.webp
+11. Iron Sword v4 -> w11.webp
+12. Iron Sword v5 -> w12.webp
+13. Iron Sword v6 -> w13.webp
+14. Iron Sword v7 -> w14.webp
+15. Iron Sword v8 -> w15.webp
+16. Iron Sword v9 -> w16.webp
+17. Super Iron Sword -> w17.webp
+18. Ultra Iron Sword -> w18.webp
+19. Platinum Sword -> w19.webp
+20. Diamond Sword -> w20.webp
+21. Diamond Sword v2.4 -> w21.webp
+22. Diamond Sword v3.1 -> w22.webp
+23. Diamond Sword v4 -> w23.webp
+24. Diamond Sword v5 -> w24.webp
+25. Diamond Sword v6 -> w25.webp
+26. Diamond Sword v7 -> w26.webp
+27. Diamond Sword v8 -> w27.webp
+28. Diamond Sword v9 -> w28.webp
+29. Diamond Sword Supra -> w29.webp
+30. Netherite Sword -> w30.webp
+31. Netherite Sword v2.6 -> w31.webp
+32. Netherite Sword v3.3 -> w32.webp
+33. Netherite Sword v4 -> w33.webp
+34. Netherite Sword v5 -> w34.webp
+35. Netherite Sword v6 -> w35.webp
+36. Netherite Sword v7 -> w36.webp
+37. Netherite Sword v8 -> w37.webp
+38. Netherite Sword v9 -> w38.webp
+39. Netherstar Sword -> w39.webp
+40. Brain Sword -> w40.webp
+41. Brain Sword Supra -> w41.webp
+42. Sword of the Cosmos -> w42.webp
+43. Sword of the Mutants -> w43.webp
+44. Sword of the Titans -> w44.webp
+45. Godstar Sword -> w45.webp
+46. Ultra Godstar Sword -> w46.webp
+47. Ultrastar Sword -> w47.webp
+48. Dark Ultrastar Sword -> w48.webp
+49. Darkgod Sword -> w49.webp
+50. Extreme Darkgod Sword -> w50.webp

@@ -1,0 +1,306 @@
+{
+  "weapons": [
+    {
+      "level": 1,
+      "name": "Stick",
+      "file": "assets/weapons/w01.webp"
+    },
+    {
+      "level": 2,
+      "name": "Bone Stick",
+      "file": "assets/weapons/w02.webp"
+    },
+    {
+      "level": 3,
+      "name": "Cardboard Sword",
+      "file": "assets/weapons/w03.webp"
+    },
+    {
+      "level": 4,
+      "name": "Wooden Sword",
+      "file": "assets/weapons/w04.webp"
+    },
+    {
+      "level": 5,
+      "name": "Stone Sword",
+      "file": "assets/weapons/w05.webp"
+    },
+    {
+      "level": 6,
+      "name": "Copper Sword",
+      "file": "assets/weapons/w06.webp"
+    },
+    {
+      "level": 7,
+      "name": "Iron Sword",
+      "file": "assets/weapons/w07.webp"
+    },
+    {
+      "level": 8,
+      "name": "Frost Iron Sword",
+      "file": "assets/weapons/w08.webp"
+    },
+    {
+      "level": 9,
+      "name": "Flame Iron Sword",
+      "file": "assets/weapons/w09.webp"
+    },
+    {
+      "level": 10,
+      "name": "Iron Sword v3",
+      "file": "assets/weapons/w10.webp"
+    },
+    {
+      "level": 11,
+      "name": "Iron Sword v4",
+      "file": "assets/weapons/w11.webp"
+    },
+    {
+      "level": 12,
+      "name": "Iron Sword v5",
+      "file": "assets/weapons/w12.webp"
+    },
+    {
+      "level": 13,
+      "name": "Iron Sword v6",
+      "file": "assets/weapons/w13.webp"
+    },
+    {
+      "level": 14,
+      "name": "Iron Sword v7",
+      "file": "assets/weapons/w14.webp"
+    },
+    {
+      "level": 15,
+      "name": "Iron Sword v8",
+      "file": "assets/weapons/w15.webp"
+    },
+    {
+      "level": 16,
+      "name": "Iron Sword v9",
+      "file": "assets/weapons/w16.webp"
+    },
+    {
+      "level": 17,
+      "name": "Super Iron Sword",
+      "file": "assets/weapons/w17.webp"
+    },
+    {
+      "level": 18,
+      "name": "Ultra Iron Sword",
+      "file": "assets/weapons/w18.webp"
+    },
+    {
+      "level": 19,
+      "name": "Platinum Sword",
+      "file": "assets/weapons/w19.webp"
+    },
+    {
+      "level": 20,
+      "name": "Diamond Sword",
+      "file": "assets/weapons/w20.webp"
+    },
+    {
+      "level": 21,
+      "name": "Diamond Sword v2.4",
+      "file": "assets/weapons/w21.webp"
+    },
+    {
+      "level": 22,
+      "name": "Diamond Sword v3.1",
+      "file": "assets/weapons/w22.webp"
+    },
+    {
+      "level": 23,
+      "name": "Diamond Sword v4",
+      "file": "assets/weapons/w23.webp"
+    },
+    {
+      "level": 24,
+      "name": "Diamond Sword v5",
+      "file": "assets/weapons/w24.webp"
+    },
+    {
+      "level": 25,
+      "name": "Diamond Sword v6",
+      "file": "assets/weapons/w25.webp"
+    },
+    {
+      "level": 26,
+      "name": "Diamond Sword v7",
+      "file": "assets/weapons/w26.webp"
+    },
+    {
+      "level": 27,
+      "name": "Diamond Sword v8",
+      "file": "assets/weapons/w27.webp"
+    },
+    {
+      "level": 28,
+      "name": "Diamond Sword v9",
+      "file": "assets/weapons/w28.webp"
+    },
+    {
+      "level": 29,
+      "name": "Diamond Sword Supra",
+      "file": "assets/weapons/w29.webp"
+    },
+    {
+      "level": 30,
+      "name": "Netherite Sword",
+      "file": "assets/weapons/w30.webp"
+    },
+    {
+      "level": 31,
+      "name": "Netherite Sword v2.6",
+      "file": "assets/weapons/w31.webp"
+    },
+    {
+      "level": 32,
+      "name": "Netherite Sword v3.3",
+      "file": "assets/weapons/w32.webp"
+    },
+    {
+      "level": 33,
+      "name": "Netherite Sword v4",
+      "file": "assets/weapons/w33.webp"
+    },
+    {
+      "level": 34,
+      "name": "Netherite Sword v5",
+      "file": "assets/weapons/w34.webp"
+    },
+    {
+      "level": 35,
+      "name": "Netherite Sword v6",
+      "file": "assets/weapons/w35.webp"
+    },
+    {
+      "level": 36,
+      "name": "Netherite Sword v7",
+      "file": "assets/weapons/w36.webp"
+    },
+    {
+      "level": 37,
+      "name": "Netherite Sword v8",
+      "file": "assets/weapons/w37.webp"
+    },
+    {
+      "level": 38,
+      "name": "Netherite Sword v9",
+      "file": "assets/weapons/w38.webp"
+    },
+    {
+      "level": 39,
+      "name": "Netherstar Sword",
+      "file": "assets/weapons/w39.webp"
+    },
+    {
+      "level": 40,
+      "name": "Brain Sword",
+      "file": "assets/weapons/w40.webp"
+    },
+    {
+      "level": 41,
+      "name": "Brain Sword Supra",
+      "file": "assets/weapons/w41.webp"
+    },
+    {
+      "level": 42,
+      "name": "Sword of the Cosmos",
+      "file": "assets/weapons/w42.webp"
+    },
+    {
+      "level": 43,
+      "name": "Sword of the Mutants",
+      "file": "assets/weapons/w43.webp"
+    },
+    {
+      "level": 44,
+      "name": "Sword of the Titans",
+      "file": "assets/weapons/w44.webp"
+    },
+    {
+      "level": 45,
+      "name": "Godstar Sword",
+      "file": "assets/weapons/w45.webp"
+    },
+    {
+      "level": 46,
+      "name": "Ultra Godstar Sword",
+      "file": "assets/weapons/w46.webp"
+    },
+    {
+      "level": 47,
+      "name": "Ultrastar Sword",
+      "file": "assets/weapons/w47.webp"
+    },
+    {
+      "level": 48,
+      "name": "Dark Ultrastar Sword",
+      "file": "assets/weapons/w48.webp"
+    },
+    {
+      "level": 49,
+      "name": "Darkgod Sword",
+      "file": "assets/weapons/w49.webp"
+    },
+    {
+      "level": 50,
+      "name": "Extreme Darkgod Sword",
+      "file": "assets/weapons/w50.webp"
+    }
+  ],
+  "backgrounds": [
+    {
+      "minLevel": 1,
+      "maxLevel": 5,
+      "file": "assets/backgrounds/bg01_forest.webp"
+    },
+    {
+      "minLevel": 6,
+      "maxLevel": 10,
+      "file": "assets/backgrounds/bg02_fortress.webp"
+    },
+    {
+      "minLevel": 11,
+      "maxLevel": 15,
+      "file": "assets/backgrounds/bg03_battlefield.webp"
+    },
+    {
+      "minLevel": 16,
+      "maxLevel": 20,
+      "file": "assets/backgrounds/bg04_elemental.webp"
+    },
+    {
+      "minLevel": 21,
+      "maxLevel": 25,
+      "file": "assets/backgrounds/bg05_futurecity.webp"
+    },
+    {
+      "minLevel": 26,
+      "maxLevel": 30,
+      "file": "assets/backgrounds/bg06_planetary.webp"
+    },
+    {
+      "minLevel": 31,
+      "maxLevel": 35,
+      "file": "assets/backgrounds/bg07_space.webp"
+    },
+    {
+      "minLevel": 36,
+      "maxLevel": 40,
+      "file": "assets/backgrounds/bg08_nebula.webp"
+    },
+    {
+      "minLevel": 41,
+      "maxLevel": 45,
+      "file": "assets/backgrounds/bg09_reality.webp"
+    },
+    {
+      "minLevel": 46,
+      "maxLevel": 50,
+      "file": "assets/backgrounds/bg10_absolute.webp"
+    }
+  ]
+}
