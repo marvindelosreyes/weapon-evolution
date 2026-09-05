@@ -339,3 +339,15 @@ DONE
 Once the GitHub Pages address opens successfully on the iPad,
 the game is installed.
 
+
+
+VERSION 2 GAMEPLAY/VISUAL UPDATES
+=================================
+This package now includes:
+- smaller on-screen sword
+- stone-brick runner path
+- looping cinematic browser-generated background music
+- sword whoosh and metallic hit sounds
+- stronger evolution sound/effect
+- fixed weapon image switching during evolution
+- cache-busting on weapon files so Safari/GitHub is less likely to keep showing the old sword

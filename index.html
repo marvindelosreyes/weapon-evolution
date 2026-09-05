@@ -14,8 +14,15 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030406;col
 #bgA,#bgB{position:absolute;inset:-4%;background-position:center;background-size:cover;transform:scale(1.08);filter:saturate(.92) contrast(1.06) brightness(.62);transition:opacity .8s ease,filter .6s ease;will-change:transform,opacity}
 #bgB{opacity:0}
 #vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 22%,rgba(0,0,0,.24) 64%,rgba(0,0,0,.74) 100%),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28));pointer-events:none}
-#road{position:absolute;left:50%;bottom:-8vh;width:min(118vw,1200px);height:65vh;transform:translateX(-50%) perspective(600px) rotateX(66deg);transform-origin:50% 100%;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(50,55,63,.18) 48%,rgba(0,0,0,.78)),repeating-linear-gradient(90deg,transparent 0 32.7%,rgba(255,255,255,.08) 33% 33.25%,transparent 33.5% 66.2%,rgba(255,255,255,.08) 66.5% 66.75%,transparent 67%);filter:blur(.2px);opacity:.88}
-#weapon{position:absolute;left:50%;bottom:9vh;width:min(34vw,340px);height:min(54vh,520px);transform:translate3d(-50%,0,0) rotate(-8deg);transform-origin:52% 88%;will-change:transform,filter;pointer-events:none;z-index:5;display:grid;place-items:center}
+#road{position:absolute;left:50%;bottom:-8vh;width:min(118vw,1200px);height:65vh;transform:translateX(-50%) perspective(600px) rotateX(66deg);transform-origin:50% 100%;
+background:
+linear-gradient(90deg,rgba(0,0,0,.72),rgba(255,255,255,.02) 48%,rgba(0,0,0,.72)),
+repeating-linear-gradient(0deg,transparent 0 38px,rgba(8,8,8,.55) 39px 43px),
+repeating-linear-gradient(90deg,rgba(90,92,96,.92) 0 74px,rgba(54,56,60,.95) 75px 79px);
+background-blend-mode:multiply,normal,normal;
+box-shadow:inset 0 0 60px rgba(0,0,0,.45);
+filter:contrast(1.05) brightness(.78);opacity:.96}
+#weapon{position:absolute;left:50%;bottom:8vh;width:min(24vw,240px);height:min(42vh,400px);transform:translate3d(-50%,0,0) rotate(-8deg);transform-origin:52% 88%;will-change:transform,filter;pointer-events:none;z-index:5;display:grid;place-items:center}
 #weapon img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 24px 18px rgba(0,0,0,.62)) drop-shadow(0 0 18px rgba(130,220,255,.18));pointer-events:none}
 #fallbackWeapon{width:55px;height:330px;border-radius:45% 45% 22% 22%;background:linear-gradient(90deg,#3d444d,#d5d9dc 45%,#767d84 65%,#2e3338);box-shadow:inset 0 0 14px rgba(255,255,255,.28),0 20px 28px rgba(0,0,0,.7);position:relative}
 #fallbackWeapon:after{content:"";position:absolute;width:120px;height:18px;background:linear-gradient(#3c3025,#8b7158);bottom:36px;left:50%;transform:translateX(-50%);border-radius:5px;box-shadow:0 5px 10px rgba(0,0,0,.5)}
@@ -43,8 +50,8 @@ h1{font-size:clamp(38px,8vw,66px);line-height:.9;letter-spacing:-.045em;margin:0
 .primary,.secondary{width:100%;min-height:52px;border-radius:15px;font-weight:900;font-size:16px;margin-top:18px}.primary{border:0;background:linear-gradient(135deg,#9fffe0,#68dfff);color:#061017}.secondary{margin-top:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:white}
 #pause,#over{display:none}
 #assetWarn{position:absolute;z-index:40;left:50%;bottom:calc(12px + var(--sb));transform:translateX(-50%);padding:7px 11px;border-radius:999px;background:rgba(7,9,13,.66);border:1px solid rgba(255,255,255,.1);font-size:11px;color:#b9c3d2;pointer-events:none;max-width:88vw;text-align:center}
-@media(max-width:620px){#hud{right:calc(7px + var(--sr));left:calc(7px + var(--sl));top:calc(7px + var(--st))}#stats{padding:8px 9px}#buttons{position:absolute;right:0;top:73px;flex-direction:column}#weapon{width:min(43vw,300px);height:min(49vh,460px)}#assetWarn{max-width:68vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
-@media(orientation:landscape) and (max-height:540px){#weapon{height:63vh;width:25vw;bottom:3vh}#buttons{position:static;flex-direction:row}#assetWarn{display:none}}
+@media(max-width:620px){#hud{right:calc(7px + var(--sr));left:calc(7px + var(--sl));top:calc(7px + var(--st))}#stats{padding:8px 9px}#buttons{position:absolute;right:0;top:73px;flex-direction:column}#weapon{width:min(30vw,220px);height:min(38vh,360px)}#assetWarn{max-width:68vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(orientation:landscape) and (max-height:540px){#weapon{height:50vh;width:18vw;bottom:3vh}#buttons{position:static;flex-direction:row}#assetWarn{display:none}}
 </style>
 </head>
 <body>
@@ -78,8 +85,15 @@ function weaponPath(i){return `assets/weapons/w${String(i+1).padStart(2,'0')}.we
 function currentBg(level){const row=BG.find(x=>level>=x[0]&&level<=x[1]);return row?row[2]:''}
 function loadWeapon(){
  const src=weaponPath(levelIndex);
+ const busted=src+'?lv='+(levelIndex+1)+'&v=2';
  el.weaponImg.style.display='none';el.fallback.style.display='block';
- const img=new Image(); img.onload=()=>{el.weaponImg.src=src;el.weaponImg.style.display='block';el.fallback.style.display='none'}; img.onerror=()=>{}; img.src=src;
+ const img=new Image();
+ img.onload=()=>{
+   el.weaponImg.onload=()=>{el.weaponImg.style.display='block';el.fallback.style.display='none'};
+   el.weaponImg.src=busted;
+ };
+ img.onerror=()=>{el.weaponImg.style.display='none';el.fallback.style.display='block'};
+ img.src=busted;
 }
 function loadBg(){
  const src=currentBg(levelIndex+1); if(!src)return;
@@ -89,10 +103,48 @@ function loadBg(){
 function hud(){el.name.textContent=`L${levelIndex+1} • ${LEVELS[levelIndex]}`;el.power.textContent=fmt(POWERS[levelIndex]);el.level.textContent=`${levelIndex+1} / 50`;el.combo.textContent=`x${combo.toFixed(combo<2?1:0)}`;el.xp.style.width=`${Math.min(1,xp)*100}%`}
 function msg(a,b='',ms=700){clearTimeout(msgTimer);el.big.textContent=a;el.small.textContent=b;el.message.classList.add('show');msgTimer=setTimeout(()=>el.message.classList.remove('show'),ms)}
 function ensureAudio(){if(!soundOn)return;if(!audio)audio=new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume()}
-function tone(f=220,d=.06,type='triangle',vol=.025,slide=0){if(!soundOn)return;ensureAudio();if(!audio)return;const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.007);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+d+.02)}
-function start(){ensureAudio();state='run';el.menu.style.display='none';el.pause.style.display='none';el.over.style.display='none';lives=3;combo=1;invuln=.7;targetX=0;playerX=0;clearTargets();resetClock();msg('READY','Drag or swipe to steer.',620);tone(220,.09,'square',.03,90);setTimeout(()=>{if(state==='run'){msg('FIGHT!','',440);tone(420,.09,'square',.035,160)}},480)}
-function pause(v){if(v&&state==='run'){state='pause';el.pause.style.display='grid';pointerDown=false}else if(!v&&state==='pause'){state='run';el.pause.style.display='none';resetClock()}}
-function over(){if(state!=='run')return;state='over';el.overText.textContent=`You reached Level ${levelIndex+1}: ${LEVELS[levelIndex]}.`;el.over.style.display='grid';save();tone(120,.28,'sawtooth',.035,-55)}
+function tone(f=220,d=.06,type='triangle',vol=.025,slide=0){
+ if(!soundOn)return;ensureAudio();if(!audio)return;
+ const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain();
+ o.type=type;o.frequency.setValueAtTime(f,t);
+ if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t+d);
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.007);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+ o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+d+.02)
+}
+let musicTimer=null,musicStep=0;
+function swordWhoosh(){
+ if(!soundOn)return;ensureAudio();if(!audio)return;
+ const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain(),f=audio.createBiquadFilter();
+ o.type='sawtooth';o.frequency.setValueAtTime(620,t);o.frequency.exponentialRampToValueAtTime(150,t+.11);
+ f.type='lowpass';f.frequency.setValueAtTime(1800,t);f.frequency.exponentialRampToValueAtTime(500,t+.11);
+ g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.035,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+.12);
+ o.connect(f);f.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.13)
+}
+function metalClang(){
+ if(!soundOn)return;ensureAudio();if(!audio)return;
+ const t=audio.currentTime;
+ [360,730,1180].forEach((f0,k)=>{const o=audio.createOscillator(),g=audio.createGain();o.type=k===0?'square':'triangle';o.frequency.setValueAtTime(f0,t);g.gain.setValueAtTime(.025/(k+1),t);g.gain.exponentialRampToValueAtTime(.0001,t+.15+.05*k);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.2+.05*k)})
+}
+function evolveChord(){
+ if(!soundOn)return;ensureAudio();if(!audio)return;
+ [220,330,440,660,880].forEach((f0,k)=>setTimeout(()=>tone(f0,.22,'triangle',.032,180),k*55))
+}
+function startMusic(){
+ if(musicTimer||!soundOn)return;ensureAudio();if(!audio)return;
+ const seq=[110,165,220,165,130,195,260,195];
+ musicStep=0;
+ musicTimer=setInterval(()=>{
+   if(!soundOn||state!=='run')return;
+   const base=seq[musicStep%seq.length];musicStep++;
+   tone(base,.32,'triangle',.012,base*.08);
+   if(musicStep%2===0)tone(base*2,.12,'sine',.008,40);
+   if(musicStep%4===0)tone(55,.08,'square',.01,-8);
+ },420)
+}
+function stopMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null}}
+function start(){ensureAudio();state='run';startMusic();el.menu.style.display='none';el.pause.style.display='none';el.over.style.display='none';lives=3;combo=1;invuln=.7;targetX=0;playerX=0;clearTargets();resetClock();msg('READY','Drag or swipe to steer.',620);tone(220,.09,'square',.03,90);setTimeout(()=>{if(state==='run'){msg('FIGHT!','',440);tone(420,.09,'square',.035,160)}},480)}
+function pause(v){if(v&&state==='run'){state='pause';stopMusic();el.pause.style.display='grid';pointerDown=false}else if(!v&&state==='pause'){state='run';startMusic();el.pause.style.display='none';resetClock()}}
+function over(){if(state!=='run')return;stopMusic();state='over';el.overText.textContent=`You reached Level ${levelIndex+1}: ${LEVELS[levelIndex]}.`;el.over.style.display='grid';save();tone(120,.28,'sawtooth',.035,-55)}
 function makeTarget(){let d=pool.pop();if(!d){d=document.createElement('div');d.className='target';el.targets.appendChild(d)}d.style.display='grid';d.className='target';active.push(d);return d}
 function spawn(){
  const d=makeTarget(),r=Math.random(),type=r<.17?'hazard':r<.39?'core':'target';d.classList.add(type);d.textContent=type==='hazard'?'DANGER':type==='core'?'CORE':'BREAK';
@@ -107,9 +159,9 @@ function debris(x,y){
 function hit(d){
  const r=d.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;debris(cx,cy);swing=Math.min(1.8,swing+1);shake=Math.min(1,shake+.22);el.flash.style.transition='none';el.flash.style.opacity='.28';requestAnimationFrame(()=>{el.flash.style.transition='opacity .1s';el.flash.style.opacity='0'});
  if(d._type==='hazard'){if(invuln<=0){lives--;combo=1;invuln=.9;shake=.8;tone(95,.13,'sawtooth',.04,-40);msg('DANGER',`${lives} integrity left`,420);if(lives<=0)over()}release(d);return}
- combo=Math.min(12,combo+.22);xp+=d._value*(1+(combo-1)*.045);tone(d._type==='core'?650:320,.05,'triangle',.025,d._type==='core'?150:70);release(d);evolve();
+ combo=Math.min(12,combo+.22);xp+=d._value*(1+(combo-1)*.045);swordWhoosh();metalClang();tone(d._type==='core'?650:320,.05,'triangle',.025,d._type==='core'?150:70);release(d);evolve();
 }
-function evolve(){if(levelIndex>=49){xp=1;hud();return}if(xp>=1){xp-=1;levelIndex++;save();loadWeapon();loadBg();shake=1;msg('EVOLUTION!',`LEVEL ${levelIndex+1} • ${LEVELS[levelIndex]}`,1050);tone(240,.13,'triangle',.045,430);setTimeout(()=>tone(520,.17,'triangle',.035,420),90);if(levelIndex===49){msg('THE ABSOLUTE','All 50 weapon forms unlocked.',2100)}}}
+function evolve(){if(levelIndex>=49){xp=1;hud();return}if(xp>=1){xp-=1;levelIndex++;save();loadWeapon();loadBg();shake=1;msg('EVOLUTION!',`LEVEL ${levelIndex+1} • ${LEVELS[levelIndex]}`,1050);evolveChord();shake=1.4;el.flash.style.transition='none';el.flash.style.opacity='.7';setTimeout(()=>{el.flash.style.transition='opacity .45s';el.flash.style.opacity='0'},40);if(levelIndex===49){msg('THE ABSOLUTE','All 50 weapon forms unlocked.',2100)}}}
 function update(dt){
  if(invuln>0)invuln-=dt;
  const follow=1-Math.exp(-dt*14);playerX+=(targetX-playerX)*follow;swing*=Math.exp(-dt*9);combo=Math.max(1,combo-dt*.025);
@@ -135,7 +187,7 @@ el.app.addEventListener('pointermove',e=>{if(!pointerDown||e.pointerId!==pointer
 function pend(e){if(e.pointerId!==pointerId)return;pointerDown=false;pointerId=null;try{el.app.releasePointerCapture?.(e.pointerId)}catch(_){}}
 el.app.addEventListener('pointerup',pend);el.app.addEventListener('pointercancel',pend);el.app.addEventListener('lostpointercapture',()=>{pointerDown=false;pointerId=null});
 $('#startBtn').onclick=start;$('#retryBtn').onclick=start;$('#pauseBtn').onclick=()=>pause(true);$('#resumeBtn').onclick=()=>pause(false);
-$('#soundBtn').onclick=()=>{soundOn=!soundOn;$('#soundBtn').textContent=soundOn?'🔊':'🔇';if(soundOn)ensureAudio()};
+$('#soundBtn').onclick=()=>{soundOn=!soundOn;$('#soundBtn').textContent=soundOn?'🔊':'🔇';if(soundOn){ensureAudio();if(state==='run')startMusic()}else stopMusic()};
 $('#fullBtn').onclick=async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(_){}};
 $('#resetBtn').onclick=()=>{try{localStorage.removeItem('weapon25dSave')}catch(_){}levelIndex=0;xp=0;combo=1;loadWeapon();loadBg();hud();msg('RESET','Progress returned to Level 1.',700)};
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='run')pause(true);resetClock()});window.addEventListener('pagehide',save);document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});document.addEventListener('contextmenu',e=>e.preventDefault());
