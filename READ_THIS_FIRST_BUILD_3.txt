@@ -1,0 +1,53 @@
+WEAPON EVOLUTION — BUILD 3
+STONE PATH + SWORD EVOLUTION FIX
+
+THIS PACKAGE FIXES TWO SPECIFIC PROBLEMS:
+
+1. SWORD DOES NOT CHANGE AFTER EVOLUTION
+   FIX:
+   - The game now destroys and recreates the sword image element at every level.
+   - Each new sword is loaded with a unique Build 3 + level URL.
+   - The next sword is preloaded.
+   - Evolution now visibly flashes/pulses the weapon.
+
+2. BACKGROUND / PATH IS BLACK
+   FIX:
+   - The game no longer depends on missing background image files to remain visible.
+   - A built-in outdoor environment is always present.
+   - The road is now a clearly visible gray stone-brick path.
+   - The dark vignette was reduced.
+
+HOW TO UPDATE YOUR EXISTING GITHUB GAME
+
+1. Download and unzip this Build 3 ZIP.
+2. Open your GitHub weapon-evolution repository.
+3. Click Add file > Upload files.
+4. Upload EVERYTHING from inside this extracted folder.
+5. Replace the existing files when GitHub asks.
+6. Click Commit changes.
+7. Wait for Actions > pages build and deployment to show a GREEN check.
+8. Open your existing GitHub Pages game URL in Safari.
+9. Refresh the page.
+
+HOW TO KNOW YOU ARE REALLY RUNNING BUILD 3
+
+Look at the BOTTOM-LEFT corner of the game.
+You MUST see:
+
+BUILD 3 • STONE PATH • SWORD SWAP FIX
+
+If you do NOT see that exact text, Safari is still showing an older copy.
+
+FIRST TEST
+
+1. Start the game.
+2. Confirm the ground is a visible gray stone-brick road.
+3. Level 1 must show Stick.
+4. Reach Level 2.
+5. The weapon must change to Bone Stick.
+6. Reach Level 3.
+7. It must change to Cardboard Sword.
+
+If the LEVEL NAME changes but the picture does not after Build 3 is visible,
+take one screenshot showing both the level name and sword. That would indicate
+a specific browser/image-file problem rather than the old code.

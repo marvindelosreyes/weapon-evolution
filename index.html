@@ -5,25 +5,52 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#06080c">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Weapon Evolution: The Absolute</title>
+<title>Weapon Evolution: The Absolute — Build 3</title>
 <style>
 :root{--st:env(safe-area-inset-top,0px);--sr:env(safe-area-inset-right,0px);--sb:env(safe-area-inset-bottom,0px);--sl:env(safe-area-inset-left,0px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030406;color:#fff;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;overscroll-behavior:none;user-select:none;-webkit-user-select:none}
-#app{position:fixed;inset:0;overflow:hidden;background:#040509}
-#bgA,#bgB{position:absolute;inset:-4%;background-position:center;background-size:cover;transform:scale(1.08);filter:saturate(.92) contrast(1.06) brightness(.62);transition:opacity .8s ease,filter .6s ease;will-change:transform,opacity}
-#bgB{opacity:0}
-#vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 22%,rgba(0,0,0,.24) 64%,rgba(0,0,0,.74) 100%),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28));pointer-events:none}
-#road{position:absolute;left:50%;bottom:-8vh;width:min(118vw,1200px);height:65vh;transform:translateX(-50%) perspective(600px) rotateX(66deg);transform-origin:50% 100%;
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#7890a0;color:#fff;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;touch-action:none;overscroll-behavior:none;user-select:none;-webkit-user-select:none}
+#app{position:fixed;inset:0;overflow:hidden;
 background:
-linear-gradient(90deg,rgba(0,0,0,.72),rgba(255,255,255,.02) 48%,rgba(0,0,0,.72)),
-repeating-linear-gradient(0deg,transparent 0 38px,rgba(8,8,8,.55) 39px 43px),
-repeating-linear-gradient(90deg,rgba(90,92,96,.92) 0 74px,rgba(54,56,60,.95) 75px 79px);
-background-blend-mode:multiply,normal,normal;
-box-shadow:inset 0 0 60px rgba(0,0,0,.45);
-filter:contrast(1.05) brightness(.78);opacity:.96}
+linear-gradient(180deg,#7896aa 0%,#a8bbc4 32%,#7b8b64 49%,#425137 50%,#26331f 100%)}
+#bgA,#bgB{position:absolute;inset:-4%;
+background:
+radial-gradient(ellipse at 18% 52%,rgba(28,49,24,.95) 0 7%,transparent 7.5%),
+radial-gradient(ellipse at 82% 50%,rgba(31,52,27,.95) 0 8%,transparent 8.5%),
+linear-gradient(180deg,rgba(105,143,166,.25) 0 44%,rgba(66,83,48,.55) 45% 100%);
+background-position:center;background-size:cover;transform:scale(1.08);
+filter:saturate(1.05) contrast(1.02) brightness(.92);
+transition:opacity .55s ease,filter .6s ease;will-change:transform,opacity}
+#bgB{opacity:0}
+#vignette{position:absolute;inset:0;
+background:radial-gradient(circle at 50% 45%,transparent 28%,rgba(0,0,0,.10) 72%,rgba(0,0,0,.32) 100%),
+linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.10));
+pointer-events:none;z-index:4}
+#road{position:absolute;z-index:2;left:50%;bottom:-18vh;width:min(82vw,900px);height:88vh;
+transform:translateX(-50%) perspective(720px) rotateX(64deg);transform-origin:50% 100%;
+background-color:#77756d;
+background-image:
+linear-gradient(90deg,rgba(29,28,25,.78) 0 3px,transparent 3px),
+linear-gradient(90deg,rgba(29,28,25,.78) 0 3px,transparent 3px),
+linear-gradient(0deg,rgba(28,27,24,.82) 0 3px,transparent 3px),
+radial-gradient(circle at 25% 30%,rgba(255,255,255,.10) 0 3px,transparent 4px),
+radial-gradient(circle at 70% 65%,rgba(0,0,0,.10) 0 4px,transparent 5px),
+linear-gradient(90deg,#626159,#8b8980 48%,#68665f);
+background-size:148px 86px,148px 86px,100% 43px,84px 71px,103px 79px,100% 100%;
+background-position:0 0,74px 43px,0 0,0 0,25px 15px,0 0;
+border-left:8px solid rgba(44,43,38,.9);border-right:8px solid rgba(44,43,38,.9);
+box-shadow:0 0 0 8px rgba(92,91,80,.55),0 0 45px rgba(0,0,0,.38),inset 0 0 38px rgba(0,0,0,.24);
+filter:none;opacity:1}
 #weapon{position:absolute;left:50%;bottom:8vh;width:min(24vw,240px);height:min(42vh,400px);transform:translate3d(-50%,0,0) rotate(-8deg);transform-origin:52% 88%;will-change:transform,filter;pointer-events:none;z-index:5;display:grid;place-items:center}
 #weapon img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 24px 18px rgba(0,0,0,.62)) drop-shadow(0 0 18px rgba(130,220,255,.18));pointer-events:none}
+#weapon.evolving{animation:weaponEvolve .42s ease-out}
+@keyframes weaponEvolve{
+0%{filter:brightness(1);transform:translate3d(var(--weapon-x,0px),0,0) translateX(-50%) rotate(-8deg) scale(.78)}
+45%{filter:brightness(2.6) drop-shadow(0 0 30px #fff);opacity:.72}
+100%{filter:brightness(1);opacity:1}
+}
+#buildTag{position:absolute;z-index:20;left:calc(10px + var(--sl));bottom:calc(8px + var(--sb));font-size:10px;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.72);text-shadow:0 1px 3px #000;pointer-events:none}
+
 #fallbackWeapon{width:55px;height:330px;border-radius:45% 45% 22% 22%;background:linear-gradient(90deg,#3d444d,#d5d9dc 45%,#767d84 65%,#2e3338);box-shadow:inset 0 0 14px rgba(255,255,255,.28),0 20px 28px rgba(0,0,0,.7);position:relative}
 #fallbackWeapon:after{content:"";position:absolute;width:120px;height:18px;background:linear-gradient(#3c3025,#8b7158);bottom:36px;left:50%;transform:translateX(-50%);border-radius:5px;box-shadow:0 5px 10px rgba(0,0,0,.5)}
 #targets{position:absolute;inset:0;z-index:3;pointer-events:none}
@@ -56,10 +83,10 @@ h1{font-size:clamp(38px,8vw,66px);line-height:.9;letter-spacing:-.045em;margin:0
 </head>
 <body>
 <div id="app">
-  <div id="bgA"></div><div id="bgB"></div><div id="road"></div><div id="targets"></div><div id="weapon"><img id="weaponImg" alt=""><div id="fallbackWeapon"></div></div><div id="vignette"></div><div id="flash"></div>
+  <div id="bgA"></div><div id="bgB"></div><div id="road"></div><div id="targets"></div><div id="weapon"><img id="weaponImg" alt=""><div id="fallbackWeapon"></div></div><div id="vignette"></div><div id="flash"></div><div id="buildTag">BUILD 3 • STONE PATH • SWORD SWAP FIX</div>
   <div id="hud"><div id="stats" class="panel"><div id="name">L1 • Stick</div><div id="row"><span>POWER <b id="power">1</b></span><span>LEVEL <b id="level">1 / 50</b></span><span>COMBO <b id="combo">x1</b></span></div><div class="bar"><div id="xp"></div></div></div><div id="buttons"><button id="pauseBtn" class="icon">Ⅱ</button><button id="soundBtn" class="icon">🔊</button><button id="fullBtn" class="icon">⛶</button></div></div>
   <div id="message"><div class="big"></div><div class="small"></div></div>
-  <div id="assetWarn">Drop your photorealistic WebP assets into /assets to replace the built-in fallback visuals.</div>
+  <div id="assetWarn">All 50 weapon images are installed. Built-in scenery keeps the game visible even without optional background art.</div>
 
   <div id="menu" class="screen"><div class="card"><h1>WEAPON<br>EVOLUTION</h1><div class="sub">A cinematic 2.5D build: photorealistic transparent weapon sprites, layered environments, impact debris, sparks, camera shake and a lightweight input engine designed for iPad Safari.</div><div class="note">The game runs now with fallbacks. Add w01.webp through w50.webp and ten background files for the full photorealistic version.</div><button id="startBtn" class="primary">START / CONTINUE</button><button id="resetBtn" class="secondary">RESET SAVE</button></div></div>
   <div id="pause" class="screen"><div class="card"><h1 style="font-size:48px">PAUSED</h1><div class="sub">The simulation is stopped cleanly.</div><button id="resumeBtn" class="primary">RESUME</button></div></div>
@@ -84,21 +111,59 @@ function save(){try{localStorage.setItem('weapon25dSave',JSON.stringify({levelIn
 function weaponPath(i){return `assets/weapons/w${String(i+1).padStart(2,'0')}.webp`}
 function currentBg(level){const row=BG.find(x=>level>=x[0]&&level<=x[1]);return row?row[2]:''}
 function loadWeapon(){
- const src=weaponPath(levelIndex);
- const busted=src+'?lv='+(levelIndex+1)+'&v=2';
- el.weaponImg.style.display='none';el.fallback.style.display='block';
- const img=new Image();
- img.onload=()=>{
-   el.weaponImg.onload=()=>{el.weaponImg.style.display='block';el.fallback.style.display='none'};
-   el.weaponImg.src=busted;
- };
- img.onerror=()=>{el.weaponImg.style.display='none';el.fallback.style.display='block'};
- img.src=busted;
+  const levelNo=levelIndex+1;
+  const src=weaponPath(levelIndex)+'?build=3&level='+levelNo;
+
+  // Recreate the IMG node every evolution. This avoids Safari retaining
+  // the previously decoded image even after the level variable changes.
+  const old=el.weaponImg;
+  const fresh=document.createElement('img');
+  fresh.id='weaponImg';
+  fresh.alt=LEVELS[levelIndex];
+  fresh.decoding='async';
+  fresh.draggable=false;
+  fresh.style.display='none';
+
+  fresh.onload=()=>{
+    fresh.style.display='block';
+    el.fallback.style.display='none';
+    el.weaponImg=fresh;
+    el.weapon.dataset.level=String(levelNo);
+    el.weapon.dataset.weapon=LEVELS[levelIndex];
+  };
+  fresh.onerror=()=>{
+    fresh.style.display='none';
+    el.fallback.style.display='block';
+    el.weaponImg=fresh;
+  };
+
+  old.replaceWith(fresh);
+  el.weaponImg=fresh;
+  el.fallback.style.display='block';
+  fresh.src=src;
+
+  // Preload only the NEXT weapon for a smooth evolution.
+  if(levelIndex<49){
+    const next=new Image();
+    next.src=weaponPath(levelIndex+1)+'?build=3&preload='+(levelNo+1);
+  }
 }
 function loadBg(){
- const src=currentBg(levelIndex+1); if(!src)return;
- const next=bgFront==='A'?el.bgB:el.bgA,prev=bgFront==='A'?el.bgA:el.bgB;
- const img=new Image();img.onload=()=>{next.style.backgroundImage=`url("${src}")`;next.style.opacity='1';prev.style.opacity='0';bgFront=bgFront==='A'?'B':'A'};img.onerror=()=>{};img.src=src;
+  const src=currentBg(levelIndex+1);
+  if(!src)return;
+  const next=bgFront==='A'?el.bgB:el.bgA;
+  const prev=bgFront==='A'?el.bgA:el.bgB;
+  const img=new Image();
+  img.onload=()=>{
+    next.style.backgroundImage=`linear-gradient(rgba(30,40,30,.10),rgba(20,25,18,.20)),url("${src}")`;
+    next.style.opacity='1';
+    prev.style.opacity='0';
+    bgFront=bgFront==='A'?'B':'A';
+  };
+  // IMPORTANT: If optional background art is absent, keep the built-in
+  // landscape and stone road instead of turning the screen black.
+  img.onerror=()=>{};
+  img.src=src+'?build=3';
 }
 function hud(){el.name.textContent=`L${levelIndex+1} • ${LEVELS[levelIndex]}`;el.power.textContent=fmt(POWERS[levelIndex]);el.level.textContent=`${levelIndex+1} / 50`;el.combo.textContent=`x${combo.toFixed(combo<2?1:0)}`;el.xp.style.width=`${Math.min(1,xp)*100}%`}
 function msg(a,b='',ms=700){clearTimeout(msgTimer);el.big.textContent=a;el.small.textContent=b;el.message.classList.add('show');msgTimer=setTimeout(()=>el.message.classList.remove('show'),ms)}
@@ -161,16 +226,34 @@ function hit(d){
  if(d._type==='hazard'){if(invuln<=0){lives--;combo=1;invuln=.9;shake=.8;tone(95,.13,'sawtooth',.04,-40);msg('DANGER',`${lives} integrity left`,420);if(lives<=0)over()}release(d);return}
  combo=Math.min(12,combo+.22);xp+=d._value*(1+(combo-1)*.045);swordWhoosh();metalClang();tone(d._type==='core'?650:320,.05,'triangle',.025,d._type==='core'?150:70);release(d);evolve();
 }
-function evolve(){if(levelIndex>=49){xp=1;hud();return}if(xp>=1){xp-=1;levelIndex++;save();loadWeapon();loadBg();shake=1;msg('EVOLUTION!',`LEVEL ${levelIndex+1} • ${LEVELS[levelIndex]}`,1050);evolveChord();shake=1.4;el.flash.style.transition='none';el.flash.style.opacity='.7';setTimeout(()=>{el.flash.style.transition='opacity .45s';el.flash.style.opacity='0'},40);if(levelIndex===49){msg('THE ABSOLUTE','All 50 weapon forms unlocked.',2100)}}}
-function update(dt){
- if(invuln>0)invuln-=dt;
- const follow=1-Math.exp(-dt*14);playerX+=(targetX-playerX)*follow;swing*=Math.exp(-dt*9);combo=Math.max(1,combo-dt*.025);
- spawnTimer-=dt;if(spawnTimer<=0&&active.length<18){spawn();spawnTimer=Math.max(.25,.68-levelIndex*.006)*(0.82+Math.random()*.44)}
- const speed=.31+Math.min(.25,levelIndex*.004);
- for(let i=active.length-1;i>=0;i--){const d=active[i];d._z+=dt*speed;drawTarget(d);if(d._z>1.06){release(d);continue}
-  if(d._z>.73&&d._z<.96){const wx=.5+playerX*.38;const tx=.5+d._x*.38*(.35+d._z*.8);if(Math.abs(wx-tx)<.115*(.9+d._s)){hit(d)}}
+function evolve(){
+ if(levelIndex>=49){xp=1;hud();return}
+ if(xp<1)return;
+
+ xp-=1;
+ levelIndex++;
+
+ // Update the sword FIRST, then all secondary visual/audio effects.
+ loadWeapon();
+ loadBg();
+ hud();
+ save();
+
+ el.weapon.classList.remove('evolving');
+ void el.weapon.offsetWidth;
+ el.weapon.classList.add('evolving');
+ setTimeout(()=>el.weapon.classList.remove('evolving'),460);
+
+ shake=1.4;
+ msg('EVOLUTION!',`LEVEL ${levelIndex+1} • ${LEVELS[levelIndex]}`,1050);
+ evolveChord();
+ el.flash.style.transition='none';
+ el.flash.style.opacity='.72';
+ setTimeout(()=>{el.flash.style.transition='opacity .45s';el.flash.style.opacity='0'},50);
+
+ if(levelIndex===49){
+   msg('EXTREME DARKGOD SWORD','All 50 weapon forms unlocked.',2100);
  }
- saveTimer+=dt;if(saveTimer>8){saveTimer=0;save()}hud();
 }
 function render(dt){
  shake*=Math.exp(-dt*10);const sx=(Math.random()-.5)*shake*8,sy=(Math.random()-.5)*shake*5;
